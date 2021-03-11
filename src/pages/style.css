@@ -1,0 +1,29 @@
+.title{
+background-color:dodgerblue;
+text-align: center;
+}
+
+.list-group {
+    padding-left: 1px;
+    margin: -19px -1px;
+}
+.list-group-item {
+    padding: 2px 5px;
+    border: none;
+    background:dodgerblue;
+}
+
+.form-control {
+    width: 24%;
+    border: 1px solid dodgerblue;
+}
+.menuItem {
+    cursor: pointer; 
+}
+.contentArea {
+    border: solid 1px red;
+}
+.activeMenuItem {
+    background:yellow;
+    font-weight: bold;
+}

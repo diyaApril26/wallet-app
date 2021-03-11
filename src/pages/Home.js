@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./style.css";
-import mockData from "../data";
 import menuItems from "../menuItems";
 import AddFunds from "./AddFunds";
 import CheckBalance from "./CheckBalance";
@@ -32,11 +31,11 @@ const Home = () => {
   };
 
   return (
-    <div className="container">
-      <h3 className="title">Personal Wallet UI</h3>
+    <div className="container ">
+      <h3 className="title customTitle">Personal Wallet UI</h3>
       <div className="row">
-        <div className="col-md-2">
-          <ul className="list-group">
+        <div className="col-md-2 padding0">
+          <ul className="padding0 margin15">
             {menuItems.map((item, index) => {
               return (
                 <li
@@ -45,16 +44,15 @@ const Home = () => {
                     setScreen(item);
                   }}
                   className={`list-group-item menuItem ${
-                    screen === item ? `activeMenuItem` : null
-                  }`}
-                >
+                    screen === item ? `activeMenuItem` : ``
+                  }`}>
                   {item}
                 </li>
               );
             })}
           </ul>
         </div>
-        <div className="col-md-10 contentArea">{menuRender()}</div>
+        <div className="col-md-10  contentArea">{menuRender()}</div>
       </div>
     </div>
   );

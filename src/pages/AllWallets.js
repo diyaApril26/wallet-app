@@ -1,9 +1,10 @@
 import React from "react";
 import mockData from "../data";
+
 const AllWallet = () => {
   return (
-    <div>
-      <table class="table">
+    <div className="scroll">
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">User Id</th>
@@ -15,7 +16,7 @@ const AllWallet = () => {
         <tbody>
           {mockData.map((data, index) => {
             return (
-              <tr>
+              <tr key={index}>
                 <td>{data.UserId}</td>
                 <td>{data.Name}</td>
                 <td>{data.Phone}</td>

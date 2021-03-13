@@ -5,82 +5,107 @@ const NewWallet = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [amount, setAmount] = useState(null);
+  const [amount, setAmount] = useState("");
+  const [error, setError] = useState("");
+
+  const handlePhone = (event) => {
+    const re = /^[+-]?\d*(?:[.,]\d*)?$/;
+    if (event.target.value === "" || re.test(event.target.value)) {
+      setPhone(event.target.value);
+    }
+    setShowAlert(false);
+  };
+
+  const handleAmount = (event) => {
+    const re = /^[+-]?\d*(?:[.,]\d*)?$/;
+    if (event.target.value === "" || re.test(event.target.value)) {
+      setAmount(event.target.value);
+    }
+    setShowAlert(false);
+  };
+
+  const _validator = () => {
+    if (!name || name.length < 3) {
+      setError("Please enter a valid wallet name");
+    } else if (!phone || phone.length !== 10) {
+      setError("Please enter a valid phone number");
+    } else if (!amount) {
+      setError("Plese enter a valid amount");
+    } else setError("");
+  };
 
   const onSubmit = () => {
-    mockData.push({
-      UserId: "Usr" + Math.round(Math.random()*1000000),
-      Name: name,
-      Phone: phone,
-      Balance: amount,
-    });
-    setShowAlert(true);
+    _validator();
+    if (name && phone && amount && name.length > 2 && phone.length === 10) {
+      mockData.push({
+        UserId: "Usr" + Math.round(Math.random() * 1000000),
+        Name: name,
+        Phone: phone,
+        Balance: amount,
+      });
+      setShowAlert(true);
+    }
   };
 
   return (
     <form>
-      <div class="form-group row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">
-          Name
-        </label>
-        <div class="col-sm-10">
+      <div className="form-group row">
+        <label className="col-sm-2 col-form-label">Name</label>
+        <div className="col-sm-10">
           <input
             type="text"
-            on
-            readonly
-            class="form-control"
+            className="form-control"
             id="name"
             value={name}
             onChange={(e) => {
-              setName(e.target.value);
+              setName(e.target.value.replace(/[^A-Za-z]/gi, ""));
               setShowAlert(false);
             }}
           />
         </div>
       </div>
-      <div class="form-group row">
-        <label for="inputPassword" class="col-sm-2 col-form-label">
-          Phone
-        </label>
-        <div class="col-sm-10">
+      <div className="form-group row">
+        <label className="col-sm-2 col-form-label">Phone</label>
+        <div className="col-sm-10">
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="phone"
             value={phone}
             onChange={(e) => {
-              setPhone(e.target.value);
-              setShowAlert(false);
+              handlePhone(e);
             }}
+            maxLength={10}
           />
         </div>
       </div>
-      <div class="form-group row">
-        <label for="inputPassword" class="col-sm-2 col-form-label">
-          Amount (Rs)
-        </label>
-        <div class="col-sm-10 cutomButton">
+      <div className="form-group row">
+        <label className="col-sm-2 col-form-label">Amount (Rs)</label>
+        <div className="col-sm-10 cutomButton">
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="amount"
             value={amount}
             onChange={(e) => {
-              setAmount(e.target.value);
-              setShowAlert(false);
+              handleAmount(e);
             }}
           />
           <button
             type="button"
             onClick={onSubmit}
-            class="btn btn-primary customSubmit">
+            className="btn btn-primary customSubmit">
             Submit
           </button>
         </div>
-        {showAlert ? (
+        {showAlert || error ? (
           <div className="alertContainer">
-            <div class="alert alert-success" role="alert">
-              New Wallet is added
+            <div
+              className={`alert ${
+                error && error !== "" ? `alert-danger` : `alert-success`
+              }`}
+              role="alert">
+              {error && error !== "" ? error : `New wallet ${name} is created.`}
             </div>
           </div>
         ) : null}

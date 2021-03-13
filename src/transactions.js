@@ -24,3 +24,5 @@ const transactions = [
     Balance: 122.33
   },
 ];
+
+export default transactions;

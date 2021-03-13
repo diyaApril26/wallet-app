@@ -68,3 +68,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### `git clone ${REPOSITORY_URL}`
+Clone the repository in your local using the above command by replacing REPOSITORY_URL with the github clone url.
+
+### yarn install
+After cloning the repository install the depencies using the above command.
+
+### yarn start
+After installing the dependencies run the application in your browser using above command.

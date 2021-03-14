@@ -46,7 +46,7 @@ const SpendFunds = () => {
 
         transactions.push({
           Name: obj.Name,
-          Date: moment().format("DD MMM, h:mm a"),
+          Date: moment().format('DD MMM, h A'),
           Amount: "-" + amount,
           Balance: obj.Balance,
         });
